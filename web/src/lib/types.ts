@@ -75,3 +75,69 @@ export interface QuoteSubmission {
   turnstileToken?: string
   website?: string
 }
+
+export type QuoteStatus = 'NEW' | 'CONTACTED' | 'QUOTED' | 'WON' | 'LOST'
+
+export interface Quote {
+  id: number
+  fullName: string
+  company: string | null
+  phone: string
+  email: string | null
+  serviceSlug: string | null
+  propertyType: string | null
+  siteLocation: string
+  projectStage: string | null
+  sizeEstimate: string | null
+  preferredDate: string | null
+  message: string | null
+  status: QuoteStatus
+  adminNotes: string | null
+  createdAt: string
+  updatedAt: string
+}
+
+export interface QuoteStats {
+  newCount: number
+  openCount: number
+  lastSevenDays: number
+  total: number
+}
+
+export interface Page<T> {
+  items: T[]
+  page: number
+  size: number
+  totalItems: number
+  totalPages: number
+}
+
+export interface MediaAsset {
+  id: number
+  url: string
+  contentType: string
+  width: number | null
+  height: number | null
+  sizeBytes: number
+  originalName: string | null
+  altText: string | null
+  caption: string | null
+  showInGallery: boolean
+  sortOrder: number
+  createdAt: string
+}
+
+export interface GalleryItem {
+  id: number
+  url: string
+  altText: string | null
+  caption: string | null
+  width: number | null
+  height: number | null
+}
+
+export interface Me {
+  email: string
+  fullName: string
+  role: 'ADMIN' | 'EDITOR'
+}

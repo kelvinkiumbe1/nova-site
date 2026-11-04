@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { api } from './api'
-import type { Project, Service, SiteSettings, Testimonial } from './types'
+import type { GalleryItem, Project, Service, SiteSettings, Testimonial } from './types'
 
 export const useServices = () =>
   useQuery({ queryKey: ['public', 'services'], queryFn: () => api<Service[]>('/api/public/services') })
@@ -27,3 +27,6 @@ export const useSettings = () =>
     queryFn: () => api<SiteSettings>('/api/public/settings'),
     staleTime: 10 * 60_000,
   })
+
+export const useGallery = () =>
+  useQuery({ queryKey: ['public', 'gallery'], queryFn: () => api<GalleryItem[]>('/api/public/gallery') })

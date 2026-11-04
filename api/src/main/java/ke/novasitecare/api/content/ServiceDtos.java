@@ -23,7 +23,7 @@ public final class ServiceDtos {
     }
 
     public record ServiceUpsert(
-            @Pattern(regexp = "^[a-z0-9]+(-[a-z0-9]+)*$", message = "lowercase letters, numbers and dashes only")
+            @Pattern(regexp = "^$|^[a-z0-9]+(-[a-z0-9]+)*$", message = "lowercase letters, numbers and dashes only")
             @Size(max = 120) String slug,
             @NotBlank @Size(max = 200) String title,
             @NotNull ServiceCategory category,

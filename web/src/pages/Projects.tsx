@@ -6,7 +6,7 @@ import { PageHero } from '../components/PageHero'
 import { Photo } from '../components/Photo'
 import { ProjectCard } from '../components/ProjectCard'
 import { SectionHeading } from '../components/SectionHeading'
-import { useProjects, useServices } from '../lib/queries'
+import { useGallery, useProjects, useServices } from '../lib/queries'
 import { useSeo } from '../lib/seo'
 
 type Filter = 'ALL' | 'CONSTRUCTION' | 'GENERAL'
@@ -20,7 +20,7 @@ export function Projects() {
   const categoryOf = useMemo(() => new Map(services.map((s) => [s.slug, s.category])), [services])
   const visible = projects.filter((p) => filter === 'ALL' || (p.serviceSlug && categoryOf.get(p.serviceSlug) === filter))
   const showcase = projects.find((p) => p.beforeImageUrl && p.afterImageUrl)
-  const teamPhotos = projects.flatMap((p) => p.gallery).slice(0, 4)
+  const { data: gallery = [] } = useGallery()
 
   return (
     <>
@@ -60,12 +60,17 @@ export function Projects() {
         </div>
       </section>
 
-      {teamPhotos.length > 0 && (
+      {gallery.length > 0 && (
         <section className="py-20">
           <div className="container-page">
             <SectionHeading eyebrow="On site" title="Our teams at work" />
             <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
-              {teamPhotos.map((src, i) => <Photo key={src + i} src={src} alt="Nova team at work" className="aspect-square w-full" />)}
+              {gallery.map((g) => (
+                <figure key={g.id}>
+                  <Photo src={g.url} alt={g.altText ?? 'Nova team at work'} className="aspect-square w-full" />
+                  {g.caption && <figcaption className="mt-2 text-xs text-stone">{g.caption}</figcaption>}
+                </figure>
+              ))}
             </div>
           </div>
         </section>

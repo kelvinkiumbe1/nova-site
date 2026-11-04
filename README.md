@@ -3,7 +3,7 @@
 React (Vite) frontend + Spring Boot API + PostgreSQL.
 
 ```
-web/    React SPA: public site (admin dashboard to come under /admin)
+web/    React SPA: public site + admin dashboard at /admin
 api/    Spring Boot 4 / Java 25 REST API
 docs/   Design prompts (Google Stitch)
 ```
@@ -22,3 +22,10 @@ npm run dev                                             # http://localhost:5173 
 ```
 
 Environment variables are listed in `.env.example`. Tests: `cd api && ./mvnw test` (needs Docker).
+
+## Admin dashboard
+
+Open http://localhost:5173/admin and sign in with the `ADMIN_EMAIL` / `ADMIN_PASSWORD` used on first start.
+From there Nova can manage quote requests, services, projects (with before/after photos), the photo
+gallery, testimonials, and site settings (contacts, WhatsApp number, social links, map, service areas).
+Uploaded images are stored in `api/uploads/` in development and in Cloudflare R2 in production.

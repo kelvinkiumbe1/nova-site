@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router'
 
 import { Layout } from './components/Layout'
 import { About } from './pages/About'
-import { Contact } from './pages/Contact'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
 import { Projects } from './pages/Projects'
@@ -20,9 +19,14 @@ export const router = createBrowserRouter([
       { path: '/about', element: <About /> },
       { path: '/projects', element: <Projects /> },
       { path: '/why-choose-us', element: <WhyChooseUs /> },
-      { path: '/contact', element: <Contact /> },
+      // Lazy: the quote form's validation libraries only load when needed.
+      { path: '/contact', lazy: async () => ({ Component: (await import('./pages/Contact')).Contact }) },
       { path: '*', element: <NotFound /> },
     ],
   },
-  // Admin dashboard is added in the next step (lazy-loaded so it never slows the public site).
+  {
+    // Lazy-loaded so the admin code never slows down the public site.
+    path: '/admin/*',
+    lazy: async () => ({ Component: (await import('./admin/AdminApp')).AdminApp }),
+  },
 ])

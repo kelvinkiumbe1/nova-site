@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -56,6 +58,15 @@ class ApiApplicationTests {
         mvc.perform(post("/api/public/quotes").contentType(MediaType.APPLICATION_JSON).content("{}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors.phone").exists());
+    }
+
+    @Test
+    void emptySlugIsGeneratedFromTitle() throws Exception {
+        mvc.perform(post("/api/admin/projects").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"title\":\"Westlands Tower Handover\",\"slug\":\"\"}")
+                        .with(user("a@b.c").roles("ADMIN")).with(csrf()))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.slug").value("westlands-tower-handover"));
     }
 
     @Test
