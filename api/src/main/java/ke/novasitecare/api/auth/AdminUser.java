@@ -31,6 +31,7 @@ public class AdminUser {
     public Long getId() { return id; }
     public String getEmail() { return email; }
     public String getPasswordHash() { return passwordHash; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
     public String getFullName() { return fullName; }
     public AdminRole getRole() { return role; }
     public boolean isEnabled() { return enabled; }
