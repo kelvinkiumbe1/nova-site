@@ -1,0 +1,14 @@
+# Local development database only. Run: docker compose -f docker-compose.dev.yml up -d
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: nova
+      POSTGRES_USER: nova
+      POSTGRES_PASSWORD: nova
+    ports:
+      - "5434:5432"
+    volumes:
+      - nova-db:/var/lib/postgresql/data
+volumes:
+  nova-db:

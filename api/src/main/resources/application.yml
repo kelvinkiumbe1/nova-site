@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: nova-api
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5434/nova}
+    username: ${DB_USER:nova}
+    password: ${DB_PASSWORD:nova}
+  jackson:
+    deserialization:
+      fail-on-null-for-primitives: false
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  mail:
+    host: ${MAIL_HOST:}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+server:
+  port: ${PORT:8081}
+  forward-headers-strategy: framework
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        same-site: lax
+        secure: ${COOKIE_SECURE:false}
+      timeout: 8h
+
+management:
+  health:
+    mail:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+nova:
+  site-url: ${SITE_URL:http://localhost:5173}
+  admin:
+    bootstrap-email: ${ADMIN_EMAIL:}
+    bootstrap-password: ${ADMIN_PASSWORD:}
+  quotes:
+    notify-email: ${QUOTE_NOTIFY_EMAIL:}
+    from-email: ${MAIL_FROM:no-reply@novasitecare.co.ke}
+  turnstile:
+    secret: ${TURNSTILE_SECRET:}

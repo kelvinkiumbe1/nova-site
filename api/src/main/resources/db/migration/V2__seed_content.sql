@@ -1,0 +1,36 @@
+-- Initial content taken from the client brief. Editable later in the admin dashboard.
+insert into site_settings (id, company_name, tagline, address, business_hours, service_areas)
+values (1, 'Nova Site Care',
+        'Premium construction and property cleaning in Nairobi',
+        'Nairobi, Kenya',
+        'Mon – Sat, 7:00am – 6:00pm',
+        array['Nairobi CBD','Westlands','Kilimani','Kileleshwa','Lavington','Karen','Runda','Kiambu Road','Syokimau','Ruiru']);
+
+insert into service (slug, title, category, summary, highlights, sort_order, featured) values
+('progressive-construction-cleaning', 'Progressive Construction Cleaning', 'CONSTRUCTION',
+ 'Scheduled cleaning while works are ongoing, keeping your site safe, organised and ready for inspections.',
+ array['Debris and dust control','Safe, tidy walkways','Inspection-ready site'], 10, true),
+('construction-phase-cleaning', 'Cleaning Between Construction Phases', 'CONSTRUCTION',
+ 'Thorough clean-down between trades so each phase starts on a clean, clear site.',
+ array['Clears the way for the next trade','Protects finished surfaces','Keeps the programme on track'], 20, true),
+('post-construction-cleaning', 'Post-Construction Cleaning', 'CONSTRUCTION',
+ 'Deep removal of dust, paint, cement and adhesive residue once the build is complete.',
+ array['Fine dust removal','Paint and cement residue','Windows, frames and fittings'], 30, true),
+('final-handover-cleaning', 'Final Handover Cleaning', 'CONSTRUCTION',
+ 'A detailed, white-glove finish that presents your project at its best for the client handover.',
+ array['Snag-free presentation','Detail polishing','Ready for occupation'], 40, true),
+('residential-cleaning', 'Residential Cleaning', 'GENERAL',
+ 'Reliable home cleaning for apartments, townhouses and family homes.',
+ array['Regular or one-off','Vetted, trained cleaners','Eco-conscious products'], 50, false),
+('office-commercial-cleaning', 'Office & Commercial Cleaning', 'GENERAL',
+ 'Professional cleaning that keeps offices, shops and commercial spaces spotless.',
+ array['Flexible schedules','After-hours service','Consistent standards'], 60, false),
+('carpet-sofa-cleaning', 'Carpet & Sofa Cleaning', 'GENERAL',
+ 'Deep extraction cleaning that lifts stains, odours and allergens.',
+ array['Stain treatment','Fast drying','Fabric-safe methods'], 70, false),
+('upholstery-cleaning', 'Upholstery Cleaning', 'GENERAL',
+ 'Careful cleaning for chairs, headboards, curtains and fabric furnishings.',
+ array['Fabric-appropriate care','Odour removal','Restores appearance'], 80, false),
+('move-in-move-out-cleaning', 'Move-In / Move-Out Cleaning', 'GENERAL',
+ 'A complete top-to-bottom clean for tenants, landlords and property managers.',
+ array['Deposit-ready finish','Kitchens and bathrooms','Cabinets and fittings'], 90, false);
