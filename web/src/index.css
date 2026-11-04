@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/playfair-display';
+
+@theme {
+  --color-ink: #0b0b0b;
+  --color-ink-soft: #1a1a1a;
+  --color-gold: #c9a24a;
+  --color-gold-light: #e2c47a;
+  --color-gold-dark: #a8842f;
+  --color-cream: #faf7f2;
+  --color-sand: #f1ece3;
+  --color-stone: #6b6459;
+
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Playfair Display Variable', ui-serif, Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-serif;
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold tracking-wide transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold disabled:opacity-60;
+}
+@utility btn-gold {
+  @apply btn bg-gold text-ink hover:bg-gold-light;
+}
+@utility btn-outline-light {
+  @apply btn border border-white/60 text-white hover:border-gold hover:text-gold;
+}
+@utility btn-outline-dark {
+  @apply btn border border-ink text-ink hover:bg-ink hover:text-white;
+}
+@utility eyebrow {
+  @apply text-xs font-semibold tracking-[0.25em] text-gold-dark uppercase;
+}
+@utility field {
+  @apply w-full rounded-sm border border-ink/15 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-stone/60 focus:border-gold focus:ring-2 focus:ring-gold/25;
+}
+@utility label {
+  @apply mb-1.5 block text-sm font-medium text-ink;
+}
