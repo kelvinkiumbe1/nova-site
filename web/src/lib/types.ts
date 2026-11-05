@@ -48,6 +48,7 @@ export interface SiteSettings {
   companyName: string
   tagline: string | null
   phone: string | null
+  phoneAlt: string | null
   whatsapp: string | null
   email: string | null
   address: string | null

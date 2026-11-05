@@ -18,6 +18,7 @@ public class SiteSettings {
     private String companyName;
     private String tagline;
     private String phone;
+    private String phoneAlt;
     private String whatsapp;
     private String email;
     private String address;
@@ -41,6 +42,8 @@ public class SiteSettings {
     public void setTagline(String v) { tagline = v; }
     public String getPhone() { return phone; }
     public void setPhone(String v) { phone = v; }
+    public String getPhoneAlt() { return phoneAlt; }
+    public void setPhoneAlt(String v) { phoneAlt = v; }
     public String getWhatsapp() { return whatsapp; }
     public void setWhatsapp(String v) { whatsapp = v; }
     public String getEmail() { return email; }

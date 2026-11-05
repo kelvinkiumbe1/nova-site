@@ -51,7 +51,8 @@ function SettingsForm({ initial }: { initial: SiteSettings }) {
         </Card>
         <Card className="space-y-5">
           <h2 className="font-serif text-lg">Contact</h2>
-          <Field label="Phone" error={errors.phone} htmlFor="phone"><input id="phone" type="tel" className="field" {...text('phone')} placeholder="0712 345 678" /></Field>
+          <Field label="Main phone" error={errors.phone} htmlFor="phone"><input id="phone" type="tel" className="field" {...text('phone')} placeholder="0712 345 678" /></Field>
+          <Field label="Second phone" hint="Optional. Shown under the main number." error={errors.phoneAlt} htmlFor="phoneAlt"><input id="phoneAlt" type="tel" className="field" {...text('phoneAlt')} /></Field>
           <Field label="WhatsApp number" hint="Turns on the floating WhatsApp button. e.g. 0712 345 678" error={errors.whatsapp} htmlFor="whatsapp">
             <input id="whatsapp" type="tel" className="field" {...text('whatsapp')} />
           </Field>

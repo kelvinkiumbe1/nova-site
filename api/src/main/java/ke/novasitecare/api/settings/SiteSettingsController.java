@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class SiteSettingsController {
 
-    public record SettingsView(String companyName, String tagline, String phone, String whatsapp, String email,
+    public record SettingsView(String companyName, String tagline, String phone, String phoneAlt, String whatsapp, String email,
                                String address, String businessHours, String facebookUrl, String instagramUrl,
                                String linkedinUrl, String tiktokUrl, String mapEmbedUrl, List<String> serviceAreas) {
         static SettingsView of(SiteSettings s) {
-            return new SettingsView(s.getCompanyName(), s.getTagline(), s.getPhone(), s.getWhatsapp(), s.getEmail(),
+            return new SettingsView(s.getCompanyName(), s.getTagline(), s.getPhone(), s.getPhoneAlt(), s.getWhatsapp(), s.getEmail(),
                     s.getAddress(), s.getBusinessHours(), s.getFacebookUrl(), s.getInstagramUrl(),
                     s.getLinkedinUrl(), s.getTiktokUrl(), s.getMapEmbedUrl(), s.getServiceAreas());
         }
@@ -30,6 +30,7 @@ public class SiteSettingsController {
             @NotBlank @Size(max = 200) String companyName,
             @Size(max = 300) String tagline,
             @Size(max = 50) String phone,
+            @Size(max = 50) String phoneAlt,
             @Pattern(regexp = "^$|^[1-9][0-9]{7,14}$", message = "international format digits only, e.g. 254712345678")
             String whatsapp,
             @Email @Size(max = 200) String email,
@@ -62,6 +63,7 @@ public class SiteSettingsController {
         s.setCompanyName(b.companyName().trim());
         s.setTagline(b.tagline());
         s.setPhone(b.phone());
+        s.setPhoneAlt(b.phoneAlt());
         s.setWhatsapp(b.whatsapp());
         s.setEmail(b.email());
         s.setAddress(b.address());

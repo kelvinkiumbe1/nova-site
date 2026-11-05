@@ -9,6 +9,7 @@ import { SocialLinks } from '../components/SocialLinks'
 import { useSettings } from '../lib/queries'
 import { useSeo } from '../lib/seo'
 import { whatsappLink } from '../lib/whatsapp'
+import { displayWhatsApp, phones, telHref } from '../lib/contact'
 
 const DEFAULT_MAP = 'https://www.google.com/maps?q=Nairobi%2C%20Kenya&z=11&output=embed'
 
@@ -23,8 +24,8 @@ export function Contact() {
   }, [hash])
 
   const items = [
-    s?.phone && { Icon: IconPhone, label: 'Call us', value: s.phone, href: `tel:${s.phone.replace(/\s/g, '')}` },
-    s?.whatsapp && { Icon: IconWhatsApp, label: 'WhatsApp', value: `+${s.whatsapp}`, href: whatsappLink(s.whatsapp, "Hello Nova Site Care, I'd like a quotation.") },
+    ...phones(s).map((p, i) => ({ Icon: IconPhone, label: i === 0 ? 'Call us' : 'Or call', value: p, href: telHref(p) })),
+    s?.whatsapp && { Icon: IconWhatsApp, label: 'WhatsApp', value: displayWhatsApp(s.whatsapp), href: whatsappLink(s.whatsapp, "Hello Nova Site Care, I'd like a quotation.") },
     s?.email && { Icon: IconMail, label: 'Email', value: s.email, href: `mailto:${s.email}` },
     s?.address && { Icon: IconPin, label: 'Office', value: s.address },
     s?.businessHours && { Icon: IconClock, label: 'Business hours', value: s.businessHours },

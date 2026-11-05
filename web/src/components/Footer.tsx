@@ -2,8 +2,9 @@ import { Link } from 'react-router'
 
 import { useServices, useSettings } from '../lib/queries'
 import { NAV } from '../lib/nav'
+import { phones, telHref } from '../lib/contact'
 import { IconClock, IconMail, IconPhone, IconPin } from './Icons'
-import { Logo } from './Logo'
+import { LogoFull } from './Logo'
 import { SocialLinks } from './SocialLinks'
 
 const YEAR = new Date().getFullYear()
@@ -17,7 +18,7 @@ export function Footer() {
       <div className="h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
       <div className="container-page grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Logo light />
+          <LogoFull className="w-52" />
           <p className="mt-5 text-sm leading-relaxed">
             {settings?.tagline ?? 'Premium construction and property cleaning in Nairobi.'}
           </p>
@@ -49,10 +50,10 @@ export function Footer() {
         <div>
           <h3 className="font-sans text-xs font-semibold tracking-[0.25em] text-gold uppercase">Contact</h3>
           <ul className="mt-5 space-y-3 text-sm">
-            {settings?.phone && (
-              <li className="flex gap-3"><IconPhone className="h-5 w-5 shrink-0 text-gold" />
-                <a href={`tel:${settings.phone.replace(/\s/g, '')}`} className="hover:text-gold">{settings.phone}</a></li>
-            )}
+            {phones(settings).map((p) => (
+              <li key={p} className="flex gap-3"><IconPhone className="h-5 w-5 shrink-0 text-gold" />
+                <a href={telHref(p)} className="hover:text-gold">{p}</a></li>
+            ))}
             {settings?.email && (
               <li className="flex gap-3"><IconMail className="h-5 w-5 shrink-0 text-gold" />
                 <a href={`mailto:${settings.email}`} className="hover:text-gold">{settings.email}</a></li>
